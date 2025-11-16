@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"    xmlns:form="sap.ui.layout.form"
+    xmlns:f="sap.f.cards" xmlns:g="sap.f">
+ <Dialog id="printDialog" title="Select Print Type" class="sapUiContentPadding customerDialog" contentWidth="1200px">
+         <HBox>
+        <VBox id="printTypebox" width="250px" visible="false" height="1000px" class="sapUiSmallMarginBeginEnd sapUiSmallMarginBottom sapUiSmallMarginTop customerDialog">
+            <Label text="Select Copy Type"/>
+            <ComboBox id="printType" selectedKey="" selectionChange="showIPAdrress">
+                <core:Item key="" text="" />
+                <core:Item key="C" text="Customer Copy" />
+                <core:Item key="M" text="Merchant Copy" />
+                <core:Item key="E" text="EGV List" />
+                <core:Item key="A" text="All Together" />
+            </ComboBox>
+        </VBox>
+    <VBox id="ipBox" visible="false" class="sapUiSmallMarginBeginEnd sapUiSmallMarginBottom sapUiSmallMarginTop customerDialog">
+      <Label text ="Select IP Address for Printer"  />
+      <g:GridList items="{IPModel>/IPs}" noDataText="No IP's Found" itemPress="onPressIP" class="roundedList">
+            <g:items>
+                <g:GridListItem type="Active">
+                    <VBox class="sapUiSmallMargin">
+                            <layoutData>
+                            <FlexItemData growFactor="1" shrinkFactor="0" />                         
+                            </layoutData>
+                            <Text text="{IPModel>IP}" />
+                            <Text text="{ShowPaymentSection>Mid}" visible="false"/>
+                    </VBox>
+                </g:GridListItem>
+            </g:items>
+        </g:GridList>                      
+    </VBox>
+    <VBox id="printBox" visible="false" class="sapUiSmallMarginEnd sapUiSmallMarginBottom sapUiMediumMarginBegin sapUiSmallMarginTop customerDialog" width="60%" height="480px" >
+     <!-- <Button text="Print" press="onPressPrint" class="sapUiTinySmallMarginTop cstmBtn" /> -->
+    <Button text="Print" id="printbtn" press="onPressPrint" class="sapUiTinySmallMarginTop cstmBtn" />
+     <core:HTML id="pdfCanvas" />
+     </VBox>
+     </HBox>
+        <beginButton>
+            <Button text="Preview" press="onConfirmPrint" class="cstmBtn"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onCancelPrint" class="cstmBtn"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
