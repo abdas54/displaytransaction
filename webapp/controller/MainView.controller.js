@@ -247,6 +247,9 @@ sap.ui.define([
                 var that = this;
                 this.aCanvas = [];
                 var sPath = "/PrintPDFSet(TransactionId='" + that.sTransactionId + "',PDFType='" + sType + "')";
+                if (that._oPrintDialog) {
+                                    that._oPrintDialog.setBusy(true);
+                                }
                 this.oModel.read(sPath, {
                     urlParameters: { "$expand": "ToPDFList" },
                     success: async function (oData) {
@@ -267,6 +270,11 @@ sap.ui.define([
                                 } catch (err) {
                                     
                                     break; // stop if a print fails
+                                }
+                                if(aResults.length === i-1){
+                                     if (that._oPrintDialog) {
+                                    that._oPrintDialog.setBusy(false);
+                                }
                                 }
                             }
 
