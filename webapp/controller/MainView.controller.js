@@ -271,7 +271,7 @@ sap.ui.define([
                                     
                                     break; // stop if a print fails
                                 }
-                                if(aResults.length === i-1){
+                                if(aResults.length - 1 === i){
                                      if (that._oPrintDialog) {
                                     that._oPrintDialog.setBusy(false);
                                 }
