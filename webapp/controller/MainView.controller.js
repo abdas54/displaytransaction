@@ -246,7 +246,7 @@ sap.ui.define([
             getPDFBase64: async function (sType) {
                 var that = this;
                 this.aCanvas = [];
-                var sPath = "/PrintPDFSet(TransactionId='" + that.sTransactionId + "',PDFType='" + sType + "')";
+                var sPath = "/PrintPDFSet(TransactionId='" + that.sTransactionId + "',PDFType='" + sType + "',Reprint='X')";
                 if (that._oPrintDialog) {
                                     that._oPrintDialog.setBusy(true);
                                 }
@@ -704,16 +704,19 @@ sap.ui.define([
                     })
                 });
                 var ipBox = sap.ui.getCore().byId("ipBox");
-                ipBox.setVisible(true);
+                ipBox.setVisible(false);
                 this._oPrintDialog.setModel(oIPModel, "IPModel");
+
+                this.printIP = aValidIPs[0];
+                this.onPressIP();
 
             },
             onPressIP: function (oEvent) {
-                var that = this;
-                var oItem = oEvent.getParameter("listItem") || oEvent.getSource();
-                var oVBox = oItem.getContent ? oItem.getContent()[0] : oItem.getAggregation("content")[0];
-                var aItems = oVBox.getItems ? oVBox.getItems() : oVBox.getAggregation("items");
-                this.printIP = aItems[0]?.getText();
+                // var that = this;
+                // var oItem = oEvent.getParameter("listItem") || oEvent.getSource();
+                // var oVBox = oItem.getContent ? oItem.getContent()[0] : oItem.getAggregation("content")[0];
+                // var aItems = oVBox.getItems ? oVBox.getItems() : oVBox.getAggregation("items");
+                // this.printIP = aItems[0]?.getText();
                 this.onConfirmPrint();
                 //this.sendToEpsonPrinter(this.aCanvas, this.printIP);
                 
