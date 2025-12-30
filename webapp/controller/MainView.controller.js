@@ -22,11 +22,11 @@ sap.ui.define([
                 that.printerIP = [];
                 this.oModel.read("/StoreIDSet", {
                     success: function (oData) {
-                       
+                        that.storeID = oData.results[0] ? oData.results[0].Store : "";
                         that.printerIP.push(oData.results[0] ? oData.results[0].PrinterIp1 ? oData.results[0].PrinterIp1 : "" : "");
                         that.printerIP.push(oData.results[0] ? oData.results[0].PrinterIp2 ? oData.results[0].PrinterIp2 : "" : "");
                         that.printerIP.push(oData.results[0] ? oData.results[0].PrinterIp3 ? oData.results[0].PrinterIp3 : "" : "");
-                       
+                        that.getView().byId("store").setValue(that.storeID);
                     },
                     error: function (oError) {
                         sap.m.MessageBox.show(JSON.parse(oError.responseText).error.message.value, {
@@ -46,7 +46,7 @@ sap.ui.define([
                 this.getView().byId("transId").setValue("");
                 this.getView().byId("trandate").setValue("");
                 this.getView().byId("tranType").setSelectedKey("");
-                this.getView().byId("store").setValue("");
+                // this.getView().byId("store").setValue("");
                 this.getView().byId("custName").setValue("");
                 this.getView().byId("custNu").setValue("");
                 var data = new sap.ui.model.json.JSONModel();

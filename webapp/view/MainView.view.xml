@@ -41,7 +41,7 @@
 							</VBox>
 							<VBox >
 								<Label text="Store:" ></Label>
-							    <Input id="store" placeholder="Enter Store" class="customInputHeight inputStyle"/>
+							    <Input id="store" placeholder="Enter Store" editable="false" enabled="false" class="customInputHeight inputStyle"/>
 							
 							</VBox>
 
